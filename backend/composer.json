@@ -29,23 +29,26 @@
         "ext-sqlite3": "*",
         "ext-tokenizer": "*",
         "ext-xml": "*",
-        "fruitcake/laravel-cors": "^2.0",
+        "fruitcake/laravel-cors": "*",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "symfony/filesystem": "^5.4"
+        "symfony/filesystem": "^5.4",
+        "symfony/mailer": "^5"
     },
     "require-dev": {
         "doctrine/dbal": "^3.3",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "kitloong/laravel-migrations-generator": "^6.3",
         "krlove/eloquent-model-generator": "^1",
         "laravel/sail": "^1.0.1",
         "lucascudo/laravel-pt-br-localization": "^1.2",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.5.10",
+        "rodrixcornell/apigenerate": "^1"
     },
     "autoload": {
         "psr-4": {
