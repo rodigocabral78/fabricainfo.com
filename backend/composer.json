@@ -37,8 +37,10 @@
         "symfony/filesystem": "^5.4"
     },
     "require-dev": {
+        "doctrine/dbal": "^3.3",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "krlove/eloquent-model-generator": "^1",
         "laravel/sail": "^1.0.1",
         "lucascudo/laravel-pt-br-localization": "^1.2",
         "mockery/mockery": "^1.4.4",
