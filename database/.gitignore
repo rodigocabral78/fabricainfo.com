@@ -1,2 +1,7 @@
-*
-!.gitignore
+#
+docker-compose.override.yml
+/.idea
+/.vscode
+.env
+.env.backup
+*.md.backup
