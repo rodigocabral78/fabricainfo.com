@@ -20,6 +20,13 @@ class Student extends Model
     use HasFactory;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'students';
+
+    /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string

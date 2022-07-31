@@ -18,6 +18,13 @@ class Course extends Model
     use HasFactory;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'courses';
+
+    /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
