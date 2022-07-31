@@ -14,3 +14,9 @@
   </b-card>
   </div>
 </template>
+
+<style>
+#student {
+  text-align: justify;
+}
+</style>

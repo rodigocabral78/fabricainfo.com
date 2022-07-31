@@ -1,9 +1,9 @@
 <template>
   <div class="about">
-    <b-card title="Card title" sub-title="Card subtitle">
+    <b-card title="About page" sub-title="Card subtitle">
     <b-card-text>
       <h1>This is an about page</h1>
-      Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
+      Some quick example text to build on the <em>about page</em> and make up the bulk of the card's
       content.
     </b-card-text>
 
@@ -14,3 +14,9 @@
   </b-card>
   </div>
 </template>
+
+<style>
+#login {
+  text-align: justify;
+}
+</style>

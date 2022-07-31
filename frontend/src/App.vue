@@ -2,16 +2,17 @@
   <div id="app">
 
     <b-navbar toggleable="lg" type="dark" variant="dark" top="fixed">
-    <b-navbar-brand href="#">NavBar</b-navbar-brand>
+    <b-navbar-brand to="/">NavBar</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/student">Student</b-nav-item>
+          <b-nav-item to="/home">Home</b-nav-item>
           <b-nav-item to="/course">Course</b-nav-item>
+          <b-nav-item to="/student">Student</b-nav-item>
           <b-nav-item to="/about">About</b-nav-item>
+          <!-- <b-nav-item to="/login">Login</b-nav-item> -->
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -45,7 +46,7 @@
 
     <b-container fluid>
       <b-row class="justify-content-center">
-        <b-col cols="12">
+        <b-col cols="8">
           <router-view></router-view>
         </b-col>
       </b-row>
@@ -62,6 +63,7 @@
   text-align: center;
   color: #2c3e50;
 }
+
 .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
   margin-top: 10px;
 }

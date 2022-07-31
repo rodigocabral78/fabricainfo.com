@@ -7,7 +7,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'namespace' => '\App\Http\Controllers',
+    // 'namespace' => '\App\Http\Controllers',
+    'namespace' => '\App\Modules\Api\Authentication\Controllers',
     'middleware' => 'api',
     'prefix' => 'v1/auth'
 ], function ($router) {
