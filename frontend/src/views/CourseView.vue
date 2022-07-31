@@ -1,8 +1,8 @@
 <template>
-  <div class="about">
+  <div class="course">
     <b-card title="Card title" sub-title="Card subtitle">
     <b-card-text>
-      <h1>This is an about page</h1>
+      <h1>This is an course page</h1>
       Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
       content.
     </b-card-text>

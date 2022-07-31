@@ -11,6 +11,22 @@ const routes: Array<RouteConfig> = [
     component: HomeView
   },
   {
+    path: '/student',
+    name: 'student',
+    // route level code-splitting
+    // this generates a separate chunk (student.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "student" */ '../views/StudentView.vue')
+  },
+  {
+    path: '/course',
+    name: 'course',
+    // route level code-splitting
+    // this generates a separate chunk (course.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "course" */ '../views/CourseView.vue')
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting

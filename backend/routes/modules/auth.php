@@ -14,8 +14,8 @@ Route::group([
     Route::post('in', 'AuthController@login');
     Route::post('out', 'AuthController@logout');
     Route::post('me', 'AuthController@me');
+    Route::post('refresh', 'AuthController@refresh');
 
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
 });
