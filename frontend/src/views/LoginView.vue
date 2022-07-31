@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div class="login">
 
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
@@ -97,7 +97,6 @@
           .catch(error => {
             console.log(error)
           })
-
       },
       onReset(event) {
         event.preventDefault()
@@ -117,7 +116,7 @@
 </script>
 
 <style>
-#login {
+.login {
   text-align: justify;
 }
 </style>
