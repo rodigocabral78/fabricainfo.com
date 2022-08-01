@@ -19,9 +19,9 @@
           hover
         >
           <template v-slot:cell(actions)="{item}">
-            <b-button size="sm" class="mr-2" variant="secondary" @click="btShow(item.id)">
+            <b-button size="sm" class="mr-2" variant="info" @click="btShow(item.id)">
               <b-icon icon="eye" aria-hidden="true"></b-icon></b-button>
-            <b-button size="sm" class="mr-2" variant="info" @click="btEdit(item.id)">
+            <b-button size="sm" class="mr-2" variant="warning" @click="btEdit(item.id)">
               <b-icon icon="pencil-square" aria-hidden="true"></b-icon></b-button>
             <b-button size="sm" variant="danger" @click="btDelete(item.id)">
               <b-icon icon="trash" aria-hidden="true"></b-icon></b-button>
