@@ -58,14 +58,16 @@
     hide-header-close
     centered
   >
-    <form ref="form" @submit.stop.prevent="handleSubmitNew">
+    <form ref="form">
       <b-form-group
         label="Title"
         label-for="title-new-input"
       >
         <b-form-input
           id="title-new-input"
-          v-model="title"
+          v-model="form.title"
+          type="text"
+          placeholder="Enter title"
           required
         ></b-form-input>
       </b-form-group>
@@ -76,7 +78,9 @@
       >
         <b-form-input
           id="description-new-input"
-          v-model="description"
+          v-model="form.description"
+          type="text"
+          placeholder="Enter description"
           required
         ></b-form-input>
       </b-form-group>
@@ -86,19 +90,19 @@
   <b-modal
     id="modal-show"
     title="Show Course"
-    @ok="handleNewOk"
-    @cancel="handleNewCancel"
     hide-header-close
     centered
   >
-    <form ref="form-show" @submit.stop.prevent="handleSubmitShow">
+    <form ref="form-show">
       <b-form-group
         label="Title"
         label-for="title-show-input"
       >
         <b-form-input
           id="title-show-input"
-          v-model="this.show.title"
+          v-model="this.form.title"
+          type="text"
+          placeholder="Enter title"
           disabled
         ></b-form-input>
       </b-form-group>
@@ -109,7 +113,9 @@
       >
         <b-form-input
           id="description-show-input"
-          v-model="this.show.description"
+          v-model="this.form.description"
+          type="text"
+          placeholder="Enter description"
           disabled
         ></b-form-input>
       </b-form-group>
@@ -119,22 +125,25 @@
   <b-modal
     id="modal-edit"
     title="Edit Course"
-    @ok="handleNewOk"
-    @cancel="handleNewCancel"
+    @ok="handleEditOk"
+    @cancel="handleEditCancel"
     hide-header-close
     centered
   >
-    <form ref="form" @submit.stop.prevent="handleSubmitEdit">
+    <form ref="form">
       <b-form-group
         label="Title"
         label-for="title-edit-input"
       >
         <b-form-input
           id="title-edit-input"
-          v-model="this.edit.title"
+          v-model="this.form.title"
+          type="text"
+          placeholder="Enter title"
           required
         ></b-form-input>
       </b-form-group>
+      {{ this.form.title }}
 
       <b-form-group
         label="Description"
@@ -142,7 +151,9 @@
       >
         <b-form-input
           id="description-edit-input"
-          v-model="this.edit.description"
+          v-model="this.form.description"
+          type="text"
+          placeholder="Enter title"
           required
         ></b-form-input>
       </b-form-group>
@@ -192,21 +203,12 @@ export default {
       perPage: 5,
       currentPage: 1,
 
-      title: null,
-      description: null,
-
-      show: {
+      form: {
         id: null,
         title: null,
         description: null,
         created_at: null,
         updated_at: null,
-      },
-
-      edit: {
-        id: null,
-        title: null,
-        description: null,
       },
 
       delete: {
@@ -216,79 +218,92 @@ export default {
   },
   methods: {
     btNew() {
-      console.log(this.title)
-      console.log(this.description)
-      this.title = null
-      this.description = null
+      console.log(this.form.title)
+      console.log(this.form.description)
+      this.form.title = null
+      this.form.description = null
       // console.log(this.$el)
     },
-    handleSubmitNew() {
-      console.log(this.title)
-      console.log(this.description)
-      this.title = this.$refs.title.value
-      this.description = this.$refs.description.value
-      this.items.push({
-        title: this.title,
-        description: this.description,
-        // created_at: new Date(),
-        // updated_at: new Date(),
-      })
-      this.$refs.form.reset()
-      this.$bvModal.hide('modal-new')
-    },
     handleNewOk() {
-      console.log('ok')
+      const urlAPI = process.env.VUE_APP_HOST_API
+      const urlLogin = urlAPI + "/v1/courses"
+      const data = JSON.stringify(this.form)
+
+      this.axios.post(urlLogin, data)
+        .then(response => {
+          console.log(response)
+          this.getList()
+        })
     },
     handleNewCancel() {
-      console.log('cancel')
-    },
-    handleNewClose() {
-      console.log('close')
+      this.form.title = null
+      this.form.description = null
+      // console.log('cancel')
     },
     btShow(item) {
       console.log(item)
-      this.show.id = item.id
-      this.show.title = item.title
-      this.show.description = item.description
-      this.show.created_at = item.created_at
-      this.show.updated_at = item.updated_at
-      console.log(this.show)
+      this.form.id = item.id
+      this.form.title = item.title
+      this.form.description = item.description
+      this.form.created_at = item.created_at
+      this.form.updated_at = item.updated_at
+      console.log(this.form)
       // console.log(this.$el)
     },
     btEdit(item) {
+      this.form.id = null
+      this.form.title = null
+      this.form.description = null
       console.log(item)
-      this.edit.id = item.id
-      this.edit.title = item.title
-      this.edit.description = item.description
-      console.log(this.edit)
+      this.form.id = item.id
+      this.form.title = item.title
+      this.form.description = item.description
+      console.log(this.form)
       // console.log(this.$el)
+    },
+    handleEditOk() {
+      console.log('ok')
+
+      const urlAPI = process.env.VUE_APP_HOST_API
+      const urlLogin = urlAPI + "/v1/courses/" + this.form.id
+      const data = JSON.stringify(this.form)
+
+      this.axios.put(urlLogin, data)
+        .then(response => {
+          console.log(response)
+          this.getList()
+        })
+        this.getList()
+    },
+    handleEditCancel() {
+      this.form.title = null
+      this.form.description = null
+      // console.log('cancel')
     },
     btDelete(item) {
       console.log('deleted ', item)
       alert('deleted ' + item.id)
+      const urlAPI = process.env.VUE_APP_HOST_API
+      const urlLogin = urlAPI + "/v1/courses/" + item.id
+
+      this.axios.delete(urlLogin)
+        .then(response => {
+          console.log(response)
+          this.getList()
+        })
     },
     getList() {
       const urlAPI = process.env.VUE_APP_HOST_API
-      // console.log('urlAPI: ', urlAPI)
-      const urlCourse = urlAPI + "/v1/courses" // api de autenticação//
+      const urlCourse = urlAPI + "/v1/courses"
       // const data = JSON.stringify(this.form)
       // console.log('data:', data)
-      const config = {
-        headers: {
-          "Accept": "application/json",
-          'Content-Type': 'application/json'
-        }
-      }
 
-      this.axios.get(urlCourse, config)
+      this.axios.get(urlCourse)
         .then(response => {
           // console.log(response)
 
           // this.items = response.data.data
-          this.items = response.data
-        })
-        .catch(error => {
-          // console.log(error)
+          this.items = response.data.items
         })
     }
   },
@@ -297,19 +312,9 @@ export default {
       return this.items.length
     }
   },
-  // watch: {
-  //   $route: function(to, from) {
-  //     console.log('to: ', to)
-  //     console.log('from: ', from)
-  //   }
-  // },
   mounted() { // gerencia o receber de dados de outro componente
-    console.log('CourseView mounted')
+    // console.log('CourseView mounted')
     this.getList()
-  // },
-  // created() {
-  //   console.log('CourseView created')
-  //   this.getList()
   }
 }
 </script>

@@ -68,10 +68,8 @@
         event.preventDefault()
 
         const urlAPI = process.env.VUE_APP_HOST_API
-        // console.log('urlAPI: ', urlAPI)
         const urlLogin = urlAPI + "/v1/auth/in" // api de autenticação//
         const data = JSON.stringify(this.form)
-        // console.log('data:', data)
         const config = {
           headers: {
             "Accept": "application/json",
@@ -81,21 +79,19 @@
 
         this.axios.post(urlLogin, data, config)
           .then(response => {
-            console.log(response)
+            // console.log(response)
             this.show = false
 
-            localStorage.setItem('access_token', response.data.access_token);
+            localStorage.setItem('login', true);
             localStorage.setItem('expires_in', response.data.expires_in);
             localStorage.setItem('token_type', response.data.token_type);
+            localStorage.setItem('access_token', response.data.access_token);
             // localStorage.setItem('client', btoa(JSON.stringify(response.data.access_token)));
             if (localStorage.getItem('access_token')) {
               this.$router.push({
                 path: '/home'
               })
             }
-          })
-          .catch(error => {
-            console.log(error)
           })
       },
       onReset(event) {

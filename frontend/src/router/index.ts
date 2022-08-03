@@ -30,7 +30,10 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (home.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue')
+    component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
+    meta: {
+      requiresAuth: localStorage.getItem('access_token') ? true : false
+    },
   },
   {
     path: '/student',
@@ -38,7 +41,10 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (student.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "student" */ '@/views/StudentView.vue')
+    component: () => import(/* webpackChunkName: "student" */ '@/views/StudentView.vue'),
+    meta: {
+      requiresAuth: localStorage.getItem('access_token') ? true : false
+    },
   },
   {
     path: '/course',
@@ -46,7 +52,10 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (course.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "course" */ '@/views/CourseView.vue')
+    component: () => import(/* webpackChunkName: "course" */ '@/views/CourseView.vue'),
+    meta: {
+      requiresAuth: localStorage.getItem('access_token') ? true : false
+    },
   },
   {
     path: '/about',
@@ -54,7 +63,10 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue'),
+    meta: {
+      requiresAuth: localStorage.getItem('access_token') ? true : false
+    },
   }
 ]
 

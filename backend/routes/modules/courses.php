@@ -16,7 +16,7 @@ Route::group([
 
     # Required Parameters
     Route::get('{id}', CourseController::class . '@show');
-    # Route::put('{id}', CourseController::class . '@update');
+    Route::put('{id}', CourseController::class . '@update');
     Route::patch('{id}', CourseController::class . '@update');
     Route::delete('{id}', CourseController::class . '@destroy');
 });
