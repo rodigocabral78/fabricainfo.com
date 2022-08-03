@@ -39,21 +39,22 @@ class Course extends Model
     protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
-    /**
      * @var array
      */
     protected $fillable = [
         'title',
         'description',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+            'created_at' => 'datetime:Y-m-d H:i:s',
+            'updated_at' => 'datetime:Y-m-d H:i:s',
+        ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

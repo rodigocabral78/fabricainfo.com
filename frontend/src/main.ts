@@ -25,13 +25,27 @@ Vue.prototype.$http = process.env.VUE_APP_HOST;
 
 Vue.config.productionTip = false
 
-axios.create({
-  // baseURL: 'https://some-domain.com/api/',
-  baseURL: process.env.VUE_APP_HOST_API,
-  headers: {
-    // "Authorization": "Bearer " + localStorage.getItem("access_token"),
-    // "Authorization": localStorage.getItem('token_type') + " " + localStorage.getItem("access_token"),
+// axios.create({
+//   // baseURL: 'https://some-domain.com/api/',
+//   baseURL: process.env.VUE_APP_HOST_API,
+//   headers: {
+//     // "Authorization": "Bearer " + localStorage.getItem("access_token"),
+//     // "Authorization": localStorage.getItem('token_type') + " " + localStorage.getItem("access_token"),
 
+//     "Accept": "application/json",
+//     "Content-Type": "application/json; charset=utf-8",
+
+//     "Access-Control-Allow-Origin": "*",
+//     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+//     "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+//     "Access-Control-Allow-Credentials": true,
+//     "Access-Control-Expose-Headers": "*",
+//     "Access-Control-Max-Age": "1728000"
+//   }
+// });
+
+axios.defaults.baseURL = process.env.VUE_APP_HOST_API;
+axios.defaults.headers.common = {
     "Accept": "application/json",
     "Content-Type": "application/json; charset=utf-8",
 
@@ -41,8 +55,8 @@ axios.create({
     "Access-Control-Allow-Credentials": true,
     "Access-Control-Expose-Headers": "*",
     "Access-Control-Max-Age": "1728000"
-  }
-});
+}
+
 
 // Adiciona um interceptador na requisição
 axios.interceptors.request.use(
@@ -53,17 +67,17 @@ axios.interceptors.request.use(
     if (access_token) {
       // console.log(access_token)
       config.headers = {
+        // "Accept": "application/json",
+        // "Content-Type": "application/json; charset=utf-8",
+
+        // "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        // "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+        // "Access-Control-Allow-Credentials": true,
+        // "Access-Control-Expose-Headers": "*",
+        // "Access-Control-Max-Age": "1728000",
+
         "Authorization": `${token_type} ${access_token}`,
-
-        "Accept": "application/json",
-        "Content-Type": "application/json; charset=utf-8",
-
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Expose-Headers": "*",
-        "Access-Control-Max-Age": "1728000"
       }
     }
     console.log(config)

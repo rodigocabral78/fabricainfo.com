@@ -18,6 +18,11 @@ const routes: Array<RouteConfig> = [
     name: 'Login',
     component: () => import ( /* webpackChunkName: "login" */ '@/views/LoginView.vue')
   },
+  // {
+  //   path: '/logout',
+  //   name: 'Logout',
+  //   component: () => import ( /* webpackChunkName: "logout" */ '@/views/LogoutView.vue')
+  // },
   {
     path: '/home',
     name: 'home',

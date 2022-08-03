@@ -11,38 +11,41 @@ class CourseService
 {
     public function index(Request $request)
     {
-        $courseSearchService = new CourseSearchService();
-        #return $courseSearchService->search(Course::with([]), $request);
-        $data = $courseSearchService(Course::with([]), $request)->toArray();
-        return [
-            'status' => 'success',
-            'code' => 200,
-            'message' => '',
-            'total_count' => $data['total'],
-            'limit' => $data['per_page'],
-            'offset' => $data['current_page'],
-            'current_page' => $data['current_page'],
-            'fields' => [
-                'action' => 'Action',
-                'id' => 'ID',
-                'name' => 'Name',
-                'created_at' => 'Created At',
-                'updated_at' => 'Updated At',
-            ],
-            'items' => $data['data'],
-            'data' => $data['data'],
-            'paginate' => [
-                'path_url' => $data['path'],
-                'first_page' => $data['first_page_url'],
-                'prev' => $data['prev_page_url'],
-                'prev_page' => $data['prev_page_url'],
-                'next' => $data['next_page_url'],
-                'next_page' => $data['next_page_url'],
-                'last_page' => $data['last_page_url'],
-                'from' => $data['from'],
-                'to' => $data['to'],
-            ],
-        ];
+        // $courseSearchService = new CourseSearchService();
+        // #return $courseSearchService->search(Course::with([]), $request);
+        // $data = $courseSearchService(Course::with([]), $request)->toArray();
+        // return [
+        //     'status' => 'success',
+        //     'code' => 200,
+        //     'message' => '',
+        //     'total_count' => $data['total'],
+        //     'limit' => $data['per_page'],
+        //     'offset' => $data['current_page'],
+        //     'current_page' => $data['current_page'],
+        //     'fields' => [
+        //         'id' => 'ID',
+        //         'name' => 'Name',
+        //         'created_at' => 'Created At',
+        //         'updated_at' => 'Updated At',
+        //         'action' => 'Action',
+        //     ],
+        //     'items' => $data['data'],
+        //     'data' => $data['data'],
+        //     'paginate' => [
+        //         'path_url' => $data['path'],
+        //         'first_page' => $data['first_page_url'],
+        //         'prev' => $data['prev_page_url'],
+        //         'prev_page' => $data['prev_page_url'],
+        //         'next' => $data['next_page_url'],
+        //         'next_page' => $data['next_page_url'],
+        //         'last_page' => $data['last_page_url'],
+        //         'from' => $data['from'],
+        //         'to' => $data['to'],
+        //     ],
+        // ];
+
+        $data = Course::query()->get();
+        return $data;
     }
 
     public function show($id)

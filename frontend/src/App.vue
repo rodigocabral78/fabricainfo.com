@@ -17,7 +17,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
+          <!-- <b-nav-form>
             <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
           </b-nav-form>
@@ -29,7 +29,7 @@
             <b-dropdown-item href="#">ES</b-dropdown-item>
             <b-dropdown-item href="#">RU</b-dropdown-item>
             <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown>
+          </b-nav-item-dropdown> -->
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
@@ -37,7 +37,8 @@
               <em>User</em>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <!-- <b-dropdown-item to="/logout">Sign Out</b-dropdown-item> -->
+            <b-dropdown-item href="#" @click="onLogout">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -46,7 +47,7 @@
 
     <b-container fluid>
       <b-row class="justify-content-center">
-        <b-col cols="8">
+        <b-col cols="10">
           <router-view></router-view>
         </b-col>
       </b-row>
@@ -54,6 +55,58 @@
 
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        form: {
+          email: '',
+          password: '',
+          checked: []
+        },
+        show: true
+      }
+    },
+    methods: {
+      onLogout(event) {
+        // console.log('Process ENV', process.env)
+        event.preventDefault()
+
+        const urlAPI = process.env.VUE_APP_HOST_API
+        // console.log('urlAPI: ', urlAPI)
+        const urlLogin = urlAPI + "/v1/auth/out" // api de autenticação//
+        const config = {
+          headers: {
+            "Accept": "application/json",
+            'Content-Type': 'application/json'
+          }
+        }
+
+        this.axios.post(urlLogin, config)
+          .then(response => {
+            console.log(response)
+            this.show = false
+
+            localStorage.clear() //all items
+
+            localStorage.removeItem('access_token') //item
+            localStorage.removeItem('expires_in') //item
+            localStorage.removeItem('token_type') //item
+            // localStorage.removeItem('client') //item
+            if (localStorage.getItem('access_token')) {
+              this.$router.push({
+                path: '/login'
+              })
+            }
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    }
+  }
+</script>
 
 <style>
 #app {
